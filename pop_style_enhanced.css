@@ -52,13 +52,7 @@ body {
     font-weight: 900;
     text-transform: uppercase;
     color: var(--pop-yellow);
-    text-shadow:
-        4px 4px 0 var(--pop-black),
-        -3px 3px 0 var(--pop-black),
-        3px -3px 0 var(--pop-black),
-        -3px -3px 0 var(--pop-black),
-        5px 5px 0 var(--pop-black),
-        0 0 10px rgba(255, 255, 0, 0.3);
+    text-shadow: none;
     line-height: 1.2;
     letter-spacing: 0.08em;
     text-align: center;
@@ -69,11 +63,7 @@ body {
 .hero-title {
     font-size: clamp(2rem, 7vw, 4.5rem);
     background: linear-gradient(135deg, var(--pop-white) 0%, #f8f8f8 100%);
-    color: var(--pop-pink);
-    text-shadow:
-        3px 3px 0 var(--pop-black),
-        6px 6px 0 rgba(0, 0, 0, 0.3),
-        0 0 15px rgba(255, 0, 127, 0.4);
+    text-shadow: none;
     display: inline-block;
     padding: 20px 35px;
     transform: rotate(-1.5deg);
@@ -84,8 +74,10 @@ body {
     margin: 30px auto;
     max-width: 90%;
     position: relative;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     animation: titleFloat 3s ease-in-out infinite;
+    font-weight: 900;
+    line-height: 1.3;
 }
 
 .hero-title:hover {
@@ -100,13 +92,47 @@ body {
     50% { transform: rotate(-1.5deg) translateY(-5px); }
 }
 
-.hero-title .text-pink {
-    color: var(--pop-pink);
-    text-shadow:
-        3px 3px 0 var(--pop-black),
-        0 0 20px rgba(255, 0, 127, 0.6);
+.hero-title-black {
+    color: var(--pop-black);
     display: inline-block;
-    animation: pulse 2s ease-in-out infinite;
+    text-shadow: 
+        2px 2px 0 var(--pop-white),
+        -1px -1px 0 var(--pop-white),
+        1px -1px 0 var(--pop-white),
+        -1px 1px 0 var(--pop-white),
+        0 0 8px rgba(255, 255, 255, 0.8);
+    font-weight: 900;
+}
+
+.hero-title-pink {
+    color: var(--pop-pink);
+    display: inline-block;
+    font-weight: 900;
+}
+
+.hero-title-emphasis {
+    color: var(--pop-pink);
+    background: linear-gradient(135deg, var(--pop-yellow) 0%, #FFD700 100%);
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: 3px solid var(--pop-black);
+    display: inline-block;
+    font-weight: 900;
+    transform: rotate(-3deg);
+    animation: emphasisPulse 2s ease-in-out infinite;
+    box-shadow: 4px 4px 0 var(--pop-black);
+    margin-right: 12px;
+}
+
+@keyframes emphasisPulse {
+    0%, 100% { 
+        transform: rotate(-3deg) scale(1);
+        box-shadow: 4px 4px 0 var(--pop-black);
+    }
+    50% { 
+        transform: rotate(-3deg) scale(1.1);
+        box-shadow: 6px 6px 0 var(--pop-black);
+    }
 }
 
 @keyframes pulse {
@@ -120,9 +146,7 @@ body {
     padding: 2px 8px;
     border-radius: 4px;
     font-weight: 900;
-    text-shadow:
-        2px 2px 0 var(--pop-black),
-        0 0 10px rgba(255, 0, 0, 0.5);
+    text-shadow: none;
     display: inline-block;
     position: relative;
     animation: highlightShake 0.5s ease-in-out infinite;
@@ -135,7 +159,7 @@ body {
 
 .text-pink {
     color: var(--pop-pink);
-    text-shadow: 2px 2px 0 var(--pop-black);
+    text-shadow: none;
 }
 
 .sticker-pink {
@@ -185,6 +209,14 @@ body {
     margin-bottom: 50px;
     animation: shakeEnhanced 0.8s ease-in-out infinite;
     transition: all 0.3s ease;
+}
+
+.speech-bubble.comic-text {
+    color: var(--pop-black) !important;
+}
+
+.speech-bubble .comic-text {
+    color: var(--pop-black) !important;
 }
 
 .speech-bubble:hover {
@@ -270,27 +302,30 @@ body {
     50% { transform: rotate(1.5deg) translateY(-8px); }
 }
 
-/* 4. CTA BUTTON: ENHANCED */
+/* 4. CTA BUTTON: REBUILT FROM SCRATCH */
 .pop-cta {
-    display: inline-block;
-    background: var(--gradient-green);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #00ff88 0%, #06C755 100%);
     color: var(--pop-black);
     font-weight: 900;
-    font-size: 1.4rem;
-    padding: 20px 50px;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    padding: 18px 40px;
     border: 6px solid var(--pop-black);
     border-radius: 50px;
     text-decoration: none;
     box-shadow: 
-        var(--shadow-xl),
-        0 0 30px rgba(0, 255, 0, 0.5),
-        inset 0 2px 10px rgba(255, 255, 255, 0.3);
+        10px 10px 0px var(--pop-black),
+        0 0 30px rgba(6, 199, 85, 0.4);
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
-    overflow: hidden;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    overflow: visible;
+    text-transform: none;
+    letter-spacing: 0.05em;
     animation: ctaPulse 2s ease-in-out infinite;
+    gap: 12px;
+    min-height: 60px;
 }
 
 .pop-cta::before {
@@ -301,9 +336,10 @@ body {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
+    z-index: 0;
 }
 
 .pop-cta:hover::before {
@@ -312,31 +348,67 @@ body {
 }
 
 .pop-cta:hover {
-    transform: scale(1.1) translateY(-5px);
+    transform: scale(1.05) translateY(-3px);
     box-shadow: 
-        20px 20px 0px var(--pop-black),
-        0 0 50px rgba(0, 255, 0, 0.7);
-    border-width: 8px;
+        15px 15px 0px var(--pop-black),
+        0 0 40px rgba(6, 199, 85, 0.6);
+    border-width: 6px;
 }
 
 .pop-cta:active {
-    transform: scale(1.05) translateY(-2px);
+    transform: scale(1.02) translateY(-1px);
     box-shadow: 
-        15px 15px 0px var(--pop-black),
-        0 0 40px rgba(0, 255, 0, 0.6);
+        8px 8px 0px var(--pop-black),
+        0 0 25px rgba(6, 199, 85, 0.5);
 }
 
 @keyframes ctaPulse {
     0%, 100% { 
         box-shadow: 
-            var(--shadow-xl),
-            0 0 30px rgba(0, 255, 0, 0.5);
+            10px 10px 0px var(--pop-black),
+            0 0 30px rgba(6, 199, 85, 0.4);
     }
     50% { 
         box-shadow: 
-            var(--shadow-xl),
-            0 0 50px rgba(0, 255, 0, 0.8);
+            10px 10px 0px var(--pop-black),
+            0 0 45px rgba(6, 199, 85, 0.6);
     }
+}
+
+/* CTA Content Container */
+.cta-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-text {
+    display: inline-block;
+    line-height: 1.2;
+}
+
+/* LINE Logo Styling */
+.line-logo-img {
+    display: block;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Legacy support */
+.line-logo,
+.line-logo svg {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
 }
 
 .pop-cta i {
@@ -482,36 +554,7 @@ body {
 
 /* 6. DIVIDER */
 .divider {
-    height: 4px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        var(--pop-black) 20%, 
-        var(--pop-pink) 50%, 
-        var(--pop-black) 80%, 
-        transparent 100%);
-    margin: 60px auto;
-    max-width: 800px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    position: relative;
-}
-
-.divider::before,
-.divider::after {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.5rem;
-    color: var(--pop-pink);
-    text-shadow: 2px 2px 0 var(--pop-black);
-}
-
-.divider::before {
-    left: 20%;
-}
-
-.divider::after {
-    right: 20%;
+    display: none;
 }
 
 /* 7. EXPLOSION BOX */
@@ -563,6 +606,8 @@ body {
 .explosion-box h2 {
     position: relative;
     z-index: 1;
+    color: var(--pop-black);
+    font-weight: 900;
 }
 
 /* 8. LIST STICKER */
@@ -579,7 +624,7 @@ body {
         var(--shadow-md),
         0 0 15px rgba(0, 0, 0, 0.1),
         inset 0 2px 5px rgba(255, 255, 255, 0.8);
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     overflow: hidden;
     opacity: 0;
@@ -591,28 +636,7 @@ body {
     transform: translateX(0);
 }
 
-.list-sticker::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.5s;
-}
-
-.list-sticker:hover::before {
-    left: 100%;
-}
-
-.list-sticker:hover {
-    transform: translateX(10px) scale(1.02);
-    box-shadow: 
-        var(--shadow-lg),
-        0 0 25px rgba(255, 0, 127, 0.3);
-    border-color: var(--pop-pink);
-}
+/* Hover effects removed to prevent clickable appearance */
 
 .list-index {
     display: inline-flex;
@@ -632,10 +656,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.list-sticker:hover .list-index {
-    transform: rotate(0deg) scale(1.1);
-    box-shadow: var(--shadow-md), 0 0 15px rgba(255, 0, 127, 0.5);
-}
+/* Hover effects removed */
 
 /* 9. MOCKUP CONTAINER */
 .mockup-container {
@@ -971,6 +992,16 @@ html {
     font-size: 1.5rem;
     margin: 40px auto;
     max-width: 90%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 25px;
+    border-radius: 10px;
+    border: 3px solid var(--pop-black);
+    font-weight: 700;
+    box-shadow: var(--shadow-md);
+}
+
+.hero-subtitle.comic-text {
+    color: var(--pop-black);
 }
 
 .hero-title-wrapper {
@@ -979,14 +1010,54 @@ html {
 
 .cta-wrapper {
     margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 .cta-note {
-    margin-top: 15px;
+    margin-top: 20px;
     font-weight: 900;
     color: var(--pop-black);
-    font-size: 1rem;
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    text-shadow: none;
+    background: #ffffff;
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: 3px solid var(--pop-black);
+    display: inline-block;
+    position: relative;
+    box-shadow: 
+        5px 5px 0px var(--pop-black),
+        0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 吹き出しのしっぽ（上向きの三角形） */
+.cta-note::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 30px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 15px solid var(--pop-black);
+    z-index: -1;
+}
+
+.cta-note::after {
+    content: '';
+    position: absolute;
+    top: -11px;
+    left: 32px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 12px solid #ffffff;
+    z-index: 0;
 }
 
 .text-large {
@@ -999,7 +1070,7 @@ html {
     padding: 2px 8px;
     border-radius: 4px;
     font-weight: 900;
-    text-shadow: 2px 2px 0 var(--pop-black);
+    text-shadow: none;
     display: inline-block;
     border: 2px solid var(--pop-black);
     box-shadow: var(--shadow-sm);
@@ -1044,12 +1115,13 @@ html {
     color: var(--pop-black) !important;
 }
 
+/* Sticky CTA Button - Same style as main CTA but optimized for sticky position */
 .sticky-cta-button {
     width: 100%;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 1.2rem;
-    background: var(--gradient-green);
+    max-width: 600px;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    padding: 14px 30px;
+    min-height: 50px;
 }
 
 .hero-section {
